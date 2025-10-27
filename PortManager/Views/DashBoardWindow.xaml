@@ -20,7 +20,7 @@
                 <Label Content="search" Margin="-5 0 0 -5"/>
                 <TextBox BorderBrush="Black" Height="20" Width="100" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  />
             </StackPanel>
-            <Button Content="Refresh" Height="20" Margin="10,0"/>
+            <Button Command="{Binding RefreshCommand}" Content="Refresh" Height="20" Margin="10,0"/>
 
         </StackPanel>
 

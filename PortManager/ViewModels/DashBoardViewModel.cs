@@ -45,7 +45,7 @@ namespace PortManager.ViewModels
         }
 
         public RelayCommand<int> KillCommand { get; }
-
+        public RelayCommand RefreshCommand { get; }
         public DashBoardViewModel()
         {
             _allports = new ObservableCollection<PortInfoMain>();
@@ -60,7 +60,8 @@ namespace PortManager.ViewModels
                    }
                },
                pid => pid > 0 
-           );
+            );
+            RefreshCommand = new RelayCommand(LoadPorts, () => true);
             LoadPorts();
         }
 
