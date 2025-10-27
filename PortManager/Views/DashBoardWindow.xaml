@@ -34,7 +34,17 @@
                     <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessName}" Width="*"/>
                     <DataGridTextColumn Header="Local Address" Binding="{Binding LocalAddress}" Width="*"/>
                     <DataGridTextColumn Header="State" Binding="{Binding State}" Width="*"/>
+                    <DataGridTemplateColumn Header="Details">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Details"
+                                     Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                     CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Action">
+
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Kill"
@@ -43,6 +53,7 @@
                                 Background="Red" Foreground="White"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
+
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>

@@ -69,16 +69,40 @@ namespace PortManager.Services
             return ports.OrderBy(p => p.Port).ToList();
         }
 
-     public static void KillProcess(int pid)
+        public static void KillProcess(int pid)
         {
             try
             {
                 var proccess = Process.GetProcessById(pid);
                 proccess.Kill();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Debug.WriteLine($"Failed to kill process {pid}: ex.Message");
             }
+        }
+
+
+        public static PortInfoDetail FetchPortDetails(int pid)
+        {
+            var details = new PortInfoDetail { PID = pid, ProcessName = "N/A", ExecutablePath = "N/A", MemoryMB = 0, StartTime = DateTime.MinValue };
+
+            try
+            {
+                var proc = Process.GetProcessById(pid);
+
+                details.ProcessName = proc.ProcessName;
+
+                try { details.ExecutablePath = proc.MainModule?.FileName ?? "N/A"; } catch { }
+                try { details.StartTime = proc.StartTime; } catch { }
+                try { details.MemoryMB = proc.WorkingSet64 / 1024.0 / 1024.0; } catch { }
+
+            }
+            catch
+            {
+            }
+
+            return details;
         }
     }
 }

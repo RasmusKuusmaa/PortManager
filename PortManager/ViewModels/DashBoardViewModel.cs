@@ -1,6 +1,7 @@
 ﻿using PortManager.Helpers;
 using PortManager.Models;
 using PortManager.Services;
+using PortManager.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,6 +47,7 @@ namespace PortManager.ViewModels
 
         public RelayCommand<int> KillCommand { get; }
         public RelayCommand RefreshCommand { get; }
+        public RelayCommand<PortInfoMain> ShowDetailsCommand { get; }
         public DashBoardViewModel()
         {
             _allports = new ObservableCollection<PortInfoMain>();
@@ -61,10 +63,20 @@ namespace PortManager.ViewModels
                },
                pid => pid > 0 
             );
+            ShowDetailsCommand = new RelayCommand<PortInfoMain>(port =>
+            {
+                if (port == null) return;
+
+                var details = PortService.FetchPortDetails(port.PID);
+                var detailsWindow = new PortDetailsWindow(details);
+                detailsWindow.Owner = Application.Current.MainWindow;
+                detailsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                detailsWindow.ShowDialog();
+            });
             RefreshCommand = new RelayCommand(LoadPorts, () => true);
             LoadPorts();
         }
-
+    
         private void LoadPorts()
         {
             var fetchedPorts = PortService.FetchAllPorts();
