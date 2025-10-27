@@ -4,19 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PortManager.Views"
+        xmlns:conv="clr-namespace:PortManager.Converters"
         mc:Ignorable="d"
         Title="PortDetailsWindow" Height="350" Width="350">
+    <Window.Resources>
+        <conv:NaToVisibilityConverter x:Key="NaToVisibilityConverter"/>
+        <conv:NaToInvertedVisibilityConverter  x:Key="NaToInvertedVisibilityConverter"/>
+    </Window.Resources>
     <ScrollViewer>
         <StackPanel Margin="10">
             <TextBlock Text="{Binding ProcessName}" FontWeight="Bold" FontSize="16"/>
             <TextBlock Text="Executable Path:"/>
-            <TextBlock TextWrapping="Wrap">
-                <Hyperlink NavigateUri="{Binding ExecutablePath}" 
-                           ToolTip="Click to open location"
-                           RequestNavigate="ExecutablePath_RequestNavigate">
-                    <TextBlock Text="{Binding ExecutablePath}" />
-                </Hyperlink>
-            </TextBlock>
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap" Visibility="{Binding ExecutablePath, Converter={StaticResource NaToVisibilityConverter}}">
+        <Hyperlink NavigateUri="{Binding ExecutablePath}" RequestNavigate="ExecutablePath_RequestNavigate">
+            <Run Text="{Binding ExecutablePath}" />
+        </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Text="{Binding ExecutablePath}" TextWrapping="Wrap" Visibility="{Binding ExecutablePath, Converter={StaticResource NaToInvertedVisibilityConverter}}" />
+            </StackPanel>
 
             <TextBlock Text="Start Time:"/>
             <TextBlock Text="{Binding StartTime}"/>
