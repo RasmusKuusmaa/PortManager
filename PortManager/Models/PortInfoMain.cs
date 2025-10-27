@@ -13,7 +13,6 @@ namespace PortManager.Models
         public string ProcessName { get; set; } = "N/A";
         public string Protocol { get; set; } = "N/A";
         public string LocalAddress { get; set; } = "N/A";
-        public string RemoteAddress { get; set; } = "N/A";
         public string State { get; set; } = "N/A";
     }
 }
