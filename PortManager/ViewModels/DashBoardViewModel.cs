@@ -1,4 +1,5 @@
-﻿using PortManager.Models;
+﻿using PortManager.Helpers;
+using PortManager.Models;
 using PortManager.Services;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,19 @@ namespace PortManager.ViewModels
             }
         }
 
+        public RelayCommand<int> KillCommand { get; }
+
         public DashBoardViewModel()
         {
             Ports = new ObservableCollection<PortInfoMain>();
+            KillCommand = new RelayCommand<int>(
+           pid =>
+           {
+               PortService.KillProcess(pid); 
+               LoadPorts(); 
+           },
+           pid => pid > 0 
+       );
             LoadPorts();
         }
 

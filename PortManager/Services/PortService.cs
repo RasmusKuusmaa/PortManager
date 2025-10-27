@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -68,6 +69,16 @@ namespace PortManager.Services
             return ports.OrderBy(p => p.Port).ToList();
         }
 
-     
+     public static void KillProcess(int pid)
+        {
+            try
+            {
+                var proccess = Process.GetProcessById(pid);
+                proccess.Kill();
+            } catch(Exception ex)
+            {
+                Debug.WriteLine($"Failed to kill process {pid}: ex.Message");
+            }
+        }
     }
 }
