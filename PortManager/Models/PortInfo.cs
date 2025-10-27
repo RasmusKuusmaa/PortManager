@@ -6,21 +6,13 @@ using System.Threading.Tasks;
 
 namespace PortManager.Models
 {
-    public class PortInfo
+    public class PortInfoMain
     {
-        // always displayed
-        public int PID { get; set; } = -1;
-        public int Port { get; set; } = -1;
-        public string ProcessName { get; set; } = "N/A";
-        public string Protocol { get; set; } = "N/A";
-        public string LocalAddress { get; set; } = "N/A";
-        public string State { get; set; } = "N/A";
-
-        // details page
-        public string ExecutablePath { get; set; } = "N/A";
-        public string RemoteAddress { get; set; } = "N/A";
-        public string UserName { get; set; } = "N/A";
-        public DateTime StartTime { get; set; } = DateTime.MinValue;
-        public double MemoryMB { get; set; } = 0.0;
+        public int PID { get; set; }
+        public int Port { get; set; }
+        public string ProcessName { get; set; }
+        public string Protocol { get; set; }
+        public string LocalAddress { get; set; }
+        public string State { get; set; }
     }
 }
