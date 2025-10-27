@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PortManager.ViewModels
 {
@@ -30,8 +31,11 @@ namespace PortManager.ViewModels
             KillCommand = new RelayCommand<int>(
            pid =>
            {
-               PortService.KillProcess(pid); 
-               LoadPorts(); 
+               if (MessageBox.Show($"Kill process {pid}?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+               {
+                   PortService.KillProcess(pid);
+                   LoadPorts();
+               }
            },
            pid => pid > 0 
        );
