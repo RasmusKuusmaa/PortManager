@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PortManager.Views"
         mc:Ignorable="d"
-        Title="PortDetailsWindow" Height="350" Width="300">
+        Title="PortDetailsWindow" Height="350" Width="350">
     <ScrollViewer>
         <StackPanel Margin="10">
             <TextBlock Text="{Binding ProcessName}" FontWeight="Bold" FontSize="16"/>
             <TextBlock Text="Executable Path:"/>
-            <TextBlock Text="{Binding ExecutablePath}" TextWrapping="Wrap"/>
-            
+            <TextBlock TextWrapping="Wrap">
+                <Hyperlink NavigateUri="{Binding ExecutablePath}" 
+                           ToolTip="Click to open location"
+                           RequestNavigate="ExecutablePath_RequestNavigate">
+                    <TextBlock Text="{Binding ExecutablePath}" />
+                </Hyperlink>
+            </TextBlock>
+
             <TextBlock Text="Start Time:"/>
             <TextBlock Text="{Binding StartTime}"/>
             <TextBlock Text="Memory (MB):"/>
