@@ -29,8 +29,12 @@
             <TextBlock Text="{Binding StartTime}"/>
             <TextBlock Text="Memory (MB):"/>
             <TextBlock Text="{Binding MemoryMB}"/>
-            
             <Button Content="Close" Width="100" Margin="0,10,0,0" Click="Close_Click" HorizontalAlignment="Left"/>
+            <Button Content="Kill" Width="100" Margin="0,10,0,0" HorizontalAlignment="Left"
+                Command="{Binding KillCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                CommandParameter="{Binding PID}"
+                Background="Red"
+                Foreground="White"/>
         </StackPanel>
     </ScrollViewer>
 </Window>

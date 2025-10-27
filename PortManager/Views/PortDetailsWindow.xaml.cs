@@ -1,4 +1,5 @@
-﻿using PortManager.Models;
+﻿using PortManager.Helpers;
+using PortManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,10 +24,12 @@ namespace PortManager.Views
     /// </summary>
     public partial class PortDetailsWindow : Window
     {
-        public PortDetailsWindow(PortInfoDetail portDetails)
+        public RelayCommand<int> KillCommand { get; }
+        public PortDetailsWindow(PortInfoDetail details, RelayCommand<int> killCommand)
         {
             InitializeComponent();
-            DataContext = portDetails;
+            DataContext = details;
+            KillCommand = killCommand;
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {

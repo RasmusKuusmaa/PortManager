@@ -68,7 +68,7 @@ namespace PortManager.ViewModels
                 if (port == null) return;
 
                 var details = PortService.FetchPortDetails(port.PID);
-                var detailsWindow = new PortDetailsWindow(details);
+                var detailsWindow = new PortDetailsWindow(details, KillCommand);
                 detailsWindow.Owner = Application.Current.MainWindow;
                 detailsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 detailsWindow.ShowDialog();
