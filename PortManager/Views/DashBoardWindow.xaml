@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:PortManager.ViewModels"
         mc:Ignorable="d"
-        Title="DashBoardWindow" Height="450" Width="800">
+        Title="PortManager" Height="450" Width="800">
     <Window.DataContext>
         <vm:DashBoardViewModel/>
     </Window.DataContext>

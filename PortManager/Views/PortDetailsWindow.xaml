@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PortManager.Views"
         xmlns:conv="clr-namespace:PortManager.Converters"
         mc:Ignorable="d"
-        Title="PortDetailsWindow" Height="350" Width="350">
+        Title="Details" Height="350" Width="350">
     <Window.Resources>
         <conv:NaToVisibilityConverter x:Key="NaToVisibilityConverter"/>
         <conv:NaToInvertedVisibilityConverter  x:Key="NaToInvertedVisibilityConverter"/>
